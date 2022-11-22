@@ -5,6 +5,7 @@ import com.examen.modelo.Pais;
 import com.examen.service.PaisService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.stereotype.Component;
@@ -24,14 +25,20 @@ public class PaisController implements Serializable {
 
     private String codigo, nombre;
     private PaisService paisService;
-
     private List<Aerolinea> aerolineaList;
+
+    @Value("${usrr}")
+    String usuario;
+
+    @Value("${paswr}")
+    String clave;
 
     @PostConstruct
     public void init() {
         System.out.print("");
         codigo = "";
         nombre = "";
+        consumoApi();
     }
 
     @Autowired
@@ -60,7 +67,7 @@ public class PaisController implements Serializable {
     public void consumoApi(){
         String url = "http://localhost:8092/prod/Aerolinea/todos";
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor("",""));
+        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(usuario,clave));
         Aerolinea [] result = restTemplate.getForObject(url,Aerolinea[].class);
         aerolineaList = Arrays.asList(result);
     }
