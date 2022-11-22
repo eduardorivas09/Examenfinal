@@ -12,9 +12,9 @@ public class Configuracion {
     @Bean
     public DataSource getDataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         dataSource.setUrl("jdbc:sqlserver://localhost;databaseName = AGENCIA;trustServerCertificate=true");
-        dataSource.setUsername("sa");
+        dataSource.setUsername("desarrollo");
         dataSource.setPassword("Temporal*123");
         return dataSource;
     }

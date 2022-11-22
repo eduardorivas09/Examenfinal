@@ -3,7 +3,7 @@
         xmlns:p="http://primefaces.org/ui"
         xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
-        <title>Eso es!</title>
+        <title>Examen JSF!</title>
     </h:head>
     <h:body>
         <div class="card">
@@ -22,6 +22,16 @@
                                       action ="#{paisController.guardar}"/>
                     <p:spacer />
                 </h:panelGrid>
+                <br/>
+                <p:dataTable id="tabla" var="tb" value="#{paisController.aerolineaList}" rowKey="#{tb.idPais}">
+
+                    <p:column headerText="Ruc">
+                        <h:outputText value="#{tb.ruc}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{tb.nombre}" />
+                    </p:column>
+                </p:dataTable>
             </h:form>
         </div>
     </h:body>
